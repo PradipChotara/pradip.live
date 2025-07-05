@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Audio API Sound Testbed</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+            padding: 2rem;
+            text-align: center;
+        }
+        h1 {
+            color: #00c2ff;
+        }
+        p {
+            color: #999;
+            font-style: italic;
+        }
+        #soundboard {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .sound-button {
+            background-color: #333;
+            border: 2px solid #555;
+            color: #fff;
+            padding: 0.8rem 1rem;
+            font-size: 0.9rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-width: 120px;
+        }
+        .sound-button:hover {
+            background-color: #ff007f;
+            border-color: #ff007f;
+            transform: scale(1.1);
+            box-shadow: 0 0 15px #ff007f;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Web Audio API Sound Samples</h1>
+    <p>Hover over the buttons below to hear programmatically generated sounds. (Click once to enable audio)</p>
+
+    <div id="soundboard">
+        </div>
+
+    <script>
+        // --- Web Audio API Setup ---
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        // Function to unlock audio on the first user interaction
+        function unlockAudio() {
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume().then(() => {
+                    console.log("AudioContext unlocked.");
+                    document.removeEventListener('click', unlockAudio);
+                });
+            }
+        }
+        document.addEventListener('click', unlockAudio);
+
+
+        // --- Library of Sound-Generating Functions ---
+
+        // Plays a quick descending sound (laser)
+        function playSweep(startFreq, endFreq, duration, type = 'sawtooth') {
+            if (audioCtx.state === 'suspended') return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.type = type;
+            osc.frequency.setValueAtTime(startFreq, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(endFreq, audioCtx.currentTime + duration);
+            gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+            osc.start();
+            osc.stop(audioCtx.currentTime + duration);
+        }
+
+        // Plays a chime or coin sound
+        function playChime(notes, duration, type = 'triangle') {
+            if (audioCtx.state === 'suspended') return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.type = type;
+            
+            let time = audioCtx.currentTime;
+            notes.forEach(note => {
+                osc.frequency.setValueAtTime(note, time);
+                time += duration / notes.length;
+            });
+
+            gain.gain.setValueAtTime(0.4, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+            osc.start();
+            osc.stop(audioCtx.currentTime + duration);
+        }
+
+        // Plays a digital glitch sound
+        function playGlitch(duration, frequency) {
+             if (audioCtx.state === 'suspended') return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.type = 'square';
+            osc.frequency.setValueAtTime(frequency, audioCtx.currentTime);
+            
+            gain.gain.setValueAtTime(0.5, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+            
+            for(let i=0; i < duration; i += 0.005) {
+                osc.frequency.setValueAtTime(Math.random() * 2000 + 200, audioCtx.currentTime + i);
+            }
+            
+            osc.start();
+            osc.stop(audioCtx.currentTime + duration);
+        }
+        
+        // Plays a low, rumbling explosion
+        function playExplosion(duration) {
+            if (audioCtx.state === 'suspended') return;
+            const bufferSize = audioCtx.sampleRate * duration;
+            const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+            const output = buffer.getChannelData(0);
+
+            for (let i = 0; i < bufferSize; i++) {
+                output[i] = Math.random() * 2 - 1;
+            }
+
+            const noise = audioCtx.createBufferSource();
+            noise.buffer = buffer;
+
+            const filter = audioCtx.createBiquadFilter();
+            filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(500, audioCtx.currentTime);
+            filter.frequency.linearRampToValueAtTime(100, audioCtx.currentTime + duration);
+            
+            const gain = audioCtx.createGain();
+            gain.gain.setValueAtTime(0.5, audioCtx.currentTime);
+            gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + duration);
+
+            noise.connect(filter);
+            filter.connect(gain);
+            gain.connect(audioCtx.destination);
+            noise.start();
+        }
+
+        // --- Sound Sample Definitions ---
+        const soundSamples = [
+            { name: 'Laser 1', action: () => playSweep(1500, 100, 0.1, 'sawtooth') },
+            { name: 'Laser 2', action: () => playSweep(800, 200, 0.2, 'square') },
+            { name: 'Blaster', action: () => playSweep(400, 50, 0.1, 'sawtooth') },
+            { name: 'UI Beep', action: () => playSweep(880, 880, 0.05, 'sine') },
+            { name: 'UI Confirm', action: () => playSweep(1200, 1200, 0.08, 'triangle') },
+            { name: 'UI Deny', action: () => playSweep(400, 100, 0.15, 'square') },
+            { name: 'Power Up', action: () => playChime([600, 1200], 0.15, 'triangle') },
+            { name: 'Coin 1', action: () => playChime([2200, 2800], 0.08, 'sine') },
+            { name: 'Coin 2', action: () => playChime([900, 1500], 0.1, 'square') },
+            { name: 'Alarm', action: () => playChime([1000, 1200, 1000, 1200], 0.4, 'sawtooth') },
+            { name: 'Jump', action: () => playSweep(440, 880, 0.1, 'sine') },
+            { name: 'Fall', action: () => playSweep(880, 300, 0.3, 'sine') },
+            { name: 'Glitch 1', action: () => playGlitch(0.1, 1000) },
+            { name: 'Glitch 2', action: () => playGlitch(0.05, 500) },
+            { name: 'Static Burst', action: () => playGlitch(0.2, 2000) },
+            { name: 'Explosion 1', action: () => playExplosion(0.3) },
+            { name: 'Deep Rumble', action: () => playExplosion(0.8) },
+            { name: 'Engine Hum', action: () => playSweep(80, 70, 1, 'sawtooth') },
+            { name: 'Zap', action: () => playSweep(2000, 50, 0.05, 'square') },
+            { name: 'Teleport', action: () => playSweep(200, 2000, 0.4, 'sawtooth') },
+        ];
+        
+        // --- Generate Random Samples to reach 50 ---
+        const waves = ['sine', 'square', 'sawtooth', 'triangle'];
+        const numToGenerate = 50 - soundSamples.length;
+
+        for (let i = 0; i < numToGenerate; i++) {
+            const startFreq = Math.random() * 1000 + 200;
+            const endFreq = Math.random() * 1000 + 100;
+            const duration = Math.random() * 0.2 + 0.05;
+            const type = waves[Math.floor(Math.random() * waves.length)];
+            const name = `RND ${type.slice(0,3)} ${i+1}`;
+            
+            soundSamples.push({
+                name: name,
+                action: () => playSweep(startFreq, endFreq, duration, type)
+            });
+        }
+        
+        // --- Button Creation ---
+        const soundboard = document.getElementById('soundboard');
+        
+        soundSamples.forEach(sample => {
+            const button = document.createElement('button');
+            button.classList.add('sound-button');
+            button.textContent = sample.name;
+            
+            button.addEventListener('mouseenter', () => {
+                unlockAudio(); // Ensure context is running
+                sample.action();
+            });
+            
+            soundboard.appendChild(button);
+        });
+
+    </script>
+</body>
+</html>
