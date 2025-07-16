@@ -14,13 +14,18 @@
         /* --- RETRO THEME STYLES --- */
 
         :root {
-            --primary-accent: #FF007F; /* Hot Pink */
-            --secondary-accent: #00C2FF; /* Electric Blue */
-            --border-color: #FFFFFF; /* White Border */
+            --primary-accent: #FF007F;
+            /* Hot Pink */
+            --secondary-accent: #00C2FF;
+            /* Electric Blue */
+            --border-color: #FFFFFF;
+            /* White Border */
             --header-font: 'Space Mono', monospace;
             --body-font: 'Space Mono', monospace;
-            --container-bg: #2c3e50; /* Dark Slate for containers */
-            --text-color: #ecf0f1; /* Off-white text */
+            --container-bg: #2c3e50;
+            /* Dark Slate for containers */
+            --text-color: #ecf0f1;
+            /* Off-white text */
         }
 
         body {
@@ -37,6 +42,7 @@
             from {
                 transform: translateY(0);
             }
+
             to {
                 transform: translateY(-1000px);
             }
@@ -45,13 +51,16 @@
         #starfield {
             position: fixed;
             width: 100%;
-            height: 200%; /* Taller to allow for scrolling */
+            height: 200%;
+            /* Taller to allow for scrolling */
             top: 0;
             left: 0;
             z-index: -1;
         }
 
-        #stars1, #stars2, #stars3 {
+        #stars1,
+        #stars2,
+        #stars3 {
             position: absolute;
             left: 0;
             top: 0;
@@ -61,7 +70,7 @@
         }
 
         #stars1 {
-            background-image: 
+            background-image:
                 radial-gradient(1px 1px at 50px 100px, #fff, transparent),
                 radial-gradient(1px 1px at 100px 200px, #fff, transparent),
                 radial-gradient(1.5px 1.5px at 200px 50px, #fff, transparent);
@@ -70,7 +79,7 @@
         }
 
         #stars2 {
-            background-image: 
+            background-image:
                 radial-gradient(1.5px 1.5px at 150px 150px, #fff, transparent),
                 radial-gradient(2px 2px at 250px 300px, #fff, transparent),
                 radial-gradient(1px 1px at 350px 80px, #fff, transparent);
@@ -79,7 +88,7 @@
         }
 
         #stars3 {
-            background-image: 
+            background-image:
                 radial-gradient(2.5px 2.5px at 50px 50px, #fff, transparent),
                 radial-gradient(3px 3px at 300px 250px, #fff, transparent),
                 radial-gradient(2px 2px at 100px 350px, #fff, transparent);
@@ -88,17 +97,22 @@
         }
 
 
-        h1, h2, h3, h4, h5, h6 {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             font-family: var(--header-font);
             color: var(--primary-accent);
             font-weight: 700;
         }
-        
+
         h2 {
-           /* border-bottom: 4px solid var(--border-color); */
-           display: inline-block;
-           padding-bottom: 8px;
-           font-size: 1.75rem;
+            /* border-bottom: 4px solid var(--border-color); */
+            display: inline-block;
+            padding-bottom: 8px;
+            font-size: 1.75rem;
         }
 
         h1 {
@@ -112,6 +126,7 @@
             transition: color 0.2s ease, transform 0.2s ease, text-shadow 0.2s ease;
             cursor: pointer;
         }
+
         .nav-link:hover {
             color: var(--secondary-accent);
             transform: scale(1.1);
@@ -124,13 +139,13 @@
             padding: 1.5rem;
             box-shadow: 8px 8px 0px var(--secondary-accent);
         }
-        
+
         #experience .retro-container,
         #about .retro-container,
         #projects .retro-container {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
+
         #experience .retro-container:hover,
         #about .retro-container:hover,
         #projects .retro-container:hover {
@@ -157,22 +172,24 @@
             transform: scale(1.1);
             box-shadow: 4px 4px 0px var(--border-color), 0 0 15px var(--secondary-accent);
         }
-        
+
         .retro-button:active {
             transform: translate(4px, 4px) scale(1.1);
             box-shadow: 0px 0px 0px var(--border-color), 0 0 15px var(--secondary-accent);
         }
-        
+
         .retro-button.secondary {
             background-color: transparent;
             color: var(--text-color);
         }
-         .retro-button.secondary:hover {
+
+        .retro-button.secondary:hover {
             box-shadow: 4px 4px 0px var(--border-color), 0 0 15px var(--text-color);
         }
-         .retro-button.secondary:active {
+
+        .retro-button.secondary:active {
             box-shadow: 0px 0px 0px var(--border-color), 0 0 15px var(--text-color);
-         }
+        }
 
         .skill-tag {
             background-color: #34495e;
@@ -201,12 +218,15 @@
         .icon-link {
             transition: transform 0.2s ease, filter 0.2s ease;
         }
+
         .icon-link:hover {
             transform: scale(1.2);
         }
+
         .github-icon:hover {
-             filter: drop-shadow(0 0 6px var(--primary-accent));
+            filter: drop-shadow(0 0 6px var(--primary-accent));
         }
+
         .project-icon:hover {
             filter: drop-shadow(0 0 6px var(--secondary-accent));
         }
@@ -216,20 +236,24 @@
         }
 
         @keyframes text-jump {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0);
             }
+
             40% {
                 transform: translateY(-12px);
             }
+
             60% {
-                transform: translateY(-12px); 
+                transform: translateY(-12px);
             }
+
             80% {
                 transform: translateY(2px);
             }
         }
-
     </style>
 </head>
 
@@ -242,7 +266,8 @@
 
     <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="header">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-xl font-bold" style="font-family: var(--header-font); color: var(--text-color);"></a>
+            <a href="#" class="text-xl font-bold"
+                style="font-family: var(--header-font); color: var(--text-color);"></a>
             <div class="hidden md:flex items-center space-x-8">
                 <a href="#about" class="nav-link">About</a>
                 <a href="#experience" class="nav-link">Experience</a>
@@ -272,9 +297,11 @@
                 <h1 class="text-5xl md:text-7xl leading-tight">
                     Pradip Chotara
                 </h1>
-                <h2 class="text-2xl md:text-3xl mt-6" style="color: var(--text-color); font-weight: normal;">AI & Machine Learning Engineer</h2>
+                <h2 class="text-2xl md:text-3xl mt-6" style="color: var(--text-color); font-weight: normal;">AI &
+                    Machine Learning Engineer</h2>
                 <p class="mt-8 text-xl max-w-3xl mx-auto">
-                    A passionate and driven AI student with hands-on experience in DevOps practices. Dedicated to building intelligent systems and solving real-world problems through technology.
+                    A passionate and driven AI student with hands-on experience in DevOps practices. Dedicated to
+                    building intelligent systems and solving real-world problems through technology.
                 </p>
                 <div class="mt-12 flex justify-center space-x-4">
                     <a href="#projects" class="retro-button">View My Work</a>
@@ -284,16 +311,18 @@
         </section>
 
         <section id="about" class="py-20">
-             <div class="text-center mb-12">
+            <div class="text-center mb-12">
                 <h2 class="text-4xl md:text-5xl">About Me</h2>
-             </div>
+            </div>
             <div class="flex flex-col md:flex-row items-start gap-12">
                 <div class="md:w-2/3 space-y-4">
-                    <p class="text-xl">I am a dedicated M.Tech student in Artificial Intelligence at Maulana Azad National Institute of
+                    <p class="text-xl">I am a dedicated M.Tech student in Artificial Intelligence at Maulana Azad
+                        National Institute of
                         Technology (NIT), Bhopal, with a foundational B.Tech in Computer Engineering. My academic
                         pursuits are complemented by my professional experience as a DevOps Trainee at Aeonx
                         Technologies Pvt Ltd.</p>
-                    <p class="text-xl">I am passionate about leveraging this unique blend of AI knowledge and DevOps expertise to create
+                    <p class="text-xl">I am passionate about leveraging this unique blend of AI knowledge and DevOps
+                        expertise to create
                         innovative, scalable, and efficient solutions. As a collaborative problem-solver, I am actively
                         seeking an opportunity to contribute to challenging projects within a dynamic team.</p>
                 </div>
@@ -306,7 +335,8 @@
                             <p class="text-xl opacity-75">Aug 2024 - May 2026</p>
                         </div>
                         <div>
-                            <p class="text-xl font-bold" style="color: var(--secondary-accent);">B.Tech in Comp. Eng.</p>
+                            <p class="text-xl font-bold" style="color: var(--secondary-accent);">B.Tech in Comp. Eng.
+                            </p>
                             <p class="text-xl">GTU</p>
                             <p class="text-xl opacity-75">July 2017 - May 2021</p>
                         </div>
@@ -317,7 +347,7 @@
 
         <section id="experience" class="py-20">
             <div class="text-center mb-12">
-                 <h2 class="text-4xl md:text-5xl">Experience</h2>
+                <h2 class="text-4xl md:text-5xl">Experience</h2>
             </div>
             <div class="max-w-3xl mx-auto">
                 <div class="retro-container">
@@ -329,9 +359,11 @@
                         <p class="text-xl opacity-75">March 2023 - July 2024</p>
                     </div>
                     <ul class="list-disc list-outside mt-4 space-y-2 pl-5">
-                        <li class="text-xl">Worked on multiple projects, gaining hands-on experience in modern development and DevOps practices.</li>
+                        <li class="text-xl">Worked on multiple projects, gaining hands-on experience in modern
+                            development and DevOps practices.</li>
                         <li class="text-xl">Built and maintained backend systems using NodeJS and PHP.</li>
-                        <li class="text-xl">Designed and managed MySQL databases and Dockerized applications for smoother deployment.</li>
+                        <li class="text-xl">Designed and managed MySQL databases and Dockerized applications for
+                            smoother deployment.</li>
                         <li class="text-xl">Gained exposure to AWS cloud services for deployment and scalability.</li>
                     </ul>
                 </div>
@@ -354,7 +386,7 @@
                         <span class="skill-tag">MongoDB</span>
                     </div>
                 </div>
-                 <div>
+                <div>
                     <h3 class="text-3xl mb-6 text-center" style="color:var(--text-color)">Frameworks & Runtimes</h3>
                     <div class="flex flex-wrap justify-center gap-4">
                         <span class="skill-tag">Langchain</span>
@@ -364,7 +396,7 @@
                         <span class="skill-tag">Node.js</span>
                     </div>
                 </div>
-                 <div>
+                <div>
                     <h3 class="text-3xl mb-6 text-center" style="color:var(--text-color)">DevOps & Tools</h3>
                     <div class="flex flex-wrap justify-center gap-4">
                         <span class="skill-tag">AWS</span>
@@ -377,15 +409,16 @@
         </section>
 
         <section id="projects" class="py-20">
-             <div class="text-center mb-12">
+            <div class="text-center mb-12">
                 <h2 class="text-4xl md:text-5xl">My Projects</h2>
-             </div>
+            </div>
             <div class="grid md:grid-cols-2 gap-8">
 
                 <div class="retro-container flex flex-col">
                     <h3 class="text-xl mb-2">Xpense - Reimbursement Tool</h3>
                     <p class="text-xl mb-4 flex-grow">
-                        Developed a tool at Aeonx Technologies to manage employee reimbursement workflows, enabling expense uploads for approval and streamlining communication with accounting.
+                        Developed a tool at Aeonx Technologies to manage employee reimbursement workflows, enabling
+                        expense uploads for approval and streamlining communication with accounting.
                     </p>
                     <div class="flex flex-wrap gap-2 mb-4">
                         <span class="skill-tag">PHP</span>
@@ -393,15 +426,18 @@
                         <span class="skill-tag">MySQL</span>
                     </div>
                     <div class="flex justify-end space-x-4 mt-auto">
-                        <a href="https://github.com/pradipchotara" target="_blank" class="icon-link github-icon" title="GitHub"><i data-lucide="github"></i></a>
-                        <a href="http://xpense.aeonx.digital" target="_blank" class="icon-link project-icon" title="Live Demo"><i data-lucide="arrow-up-right-from-square"></i></a>
+                        <!-- <a href="https://github.com/pradipchotara" target="_blank" class="icon-link github-icon"
+                            title="GitHub"><i data-lucide="github"></i></a> -->
+                        <a href="http://xpense.aeonx.digital" target="_blank" class="icon-link project-icon"
+                            title="Live Demo"><i data-lucide="arrow-up-right-from-square"></i></a>
                     </div>
                 </div>
 
                 <div class="retro-container flex flex-col">
                     <h3 class="text-xl mb-2">Fall Detection RAG System</h3>
                     <p class="text-xl mb-4 flex-grow">
-                         Built scalable pipelines for document processing and embedding with Vertex AI, enabling real-time file uploads and context-aware answers.
+                        Built scalable pipelines for document processing and embedding with Vertex AI, enabling
+                        real-time file uploads and context-aware answers.
                     </p>
                     <div class="flex flex-wrap gap-2 mb-4">
                         <span class="skill-tag">FastAPI</span>
@@ -409,40 +445,69 @@
                         <span class="skill-tag">LLM</span>
                     </div>
                     <div class="flex justify-end space-x-4 mt-auto">
-                         <a href="https://github.com/pradipchotara" target="_blank" class="icon-link github-icon" title="GitHub"><i data-lucide="github"></i></a>
-                        <a href="http://34.45.183.211:8080/" target="_blank" class="icon-link project-icon" title="Live Demo"><i data-lucide="arrow-up-right-from-square"></i></a>
+                        <a href="https://github.com/PradipChotara/fall-detection-rag" target="_blank" class="icon-link github-icon"
+                            title="GitHub"><i data-lucide="github"></i></a>
+                        <a href="http://34.45.183.211:8080/" target="_blank" class="icon-link project-icon"
+                            title="Live Demo"><i data-lucide="arrow-up-right-from-square"></i></a>
                     </div>
                 </div>
 
                 <div class="retro-container flex flex-col">
-                     <h3 class="text-xl mb-2">PDF Query App</h3>
+                    <h3 class="text-xl mb-2">Fine-Tuned YOLOv8 Sign Recognition Web Application</h3>
                     <p class="text-xl mb-4 flex-grow">
-                        Developed a FastAPI backend to process PDFs, chunk text using Langchain, generate embeddings with Sentence Transformers, and perform semantic search.
+                        Built and deployed a real-time digit recognition app using a fine-tuned YOLOv8n model, with automated hand labeling via MediaPipe and scalable cloud deployment on GCP.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="skill-tag">YOLO</span>
+                        <span class="skill-tag">MediaPipe</span>
+                        <span class="skill-tag">GCP</span>
+
+                    </div>
+                    <div class="flex justify-end space-x-4 mt-auto">
+                        <a href="https://github.com/PradipChotara/sign-detection-yolov8" target="_blank"
+                            class="icon-link github-icon" title="GitHub"><i data-lucide="github"></i></a>
+                        <a href="https://34.46.83.120:8501/" target="_blank" class="icon-link project-icon"
+                            title="Live Demo"><i data-lucide="arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+
+                <div class="retro-container flex flex-col">
+                    <h3 class="text-xl mb-2">PDF Query App</h3>
+                    <p class="text-xl mb-4 flex-grow">
+                        Developed a FastAPI backend to process PDFs, chunk text using Langchain, generate embeddings
+                        with Sentence Transformers, and perform semantic search.
                     </p>
                     <div class="flex flex-wrap gap-2 mb-4">
                         <span class="skill-tag">FastAPI</span>
                         <span class="skill-tag">Langchain</span>
                         <span class="skill-tag">Docker</span>
                     </div>
-                     <div class="flex justify-end space-x-4 mt-auto">
-                         <a href="https://github.com/pradipchotara" target="_blank" class="icon-link github-icon" title="GitHub"><i data-lucide="github"></i></a>
-                        <a href="https://storage.googleapis.com/pdf-query-app-bucket/index.html" target="_blank" class="icon-link project-icon" title="Live Demo"><i data-lucide="arrow-up-right-from-square"></i></a>
+                    <div class="flex justify-end space-x-4 mt-auto">
+                        <a href="https://github.com/PradipChotara/pdf-query-app" target="_blank" class="icon-link github-icon"
+                            title="GitHub"><i data-lucide="github"></i></a>
+                        <a href="https://storage.googleapis.com/pdf-query-app-bucket/index.html" target="_blank"
+                            class="icon-link project-icon" title="Live Demo"><i
+                                data-lucide="arrow-up-right-from-square"></i></a>
                     </div>
                 </div>
 
-                 <div class="retro-container flex flex-col">
-                     <h3 class="text-xl mb-2">Sign Language Recognition</h3>
+                <div class="retro-container flex flex-col">
+                    <h3 class="text-xl mb-2">Sign Language Recognition</h3>
                     <p class="text-xl mb-4 flex-grow">
-                        Developed a real-time sign language recognition system with a FastAPI backend on Google Cloud Run and a responsive frontend for webcam capture.
+                        Developed a real-time sign language recognition system with a FastAPI backend on Google Cloud
+                        Run and a responsive frontend for webcam capture.
                     </p>
                     <div class="flex flex-wrap gap-2 mb-4">
                         <span class="skill-tag">FastAPI</span>
                         <span class="skill-tag">Docker</span>
                         <span class="skill-tag">GCP</span>
                     </div>
-                     <div class="flex justify-end space-x-4 mt-auto">
-                         <a href="https://github.com/pradipchotara" target="_blank" class="icon-link github-icon" title="GitHub"><i data-lucide="github"></i></a>
-                        <a href="https://storage.googleapis.com/signl_frontend/new_index.html" target="_blank" class="icon-link project-icon" title="Live Demo"><i data-lucide="arrow-up-right-from-square"></i></a>
+                    <div class="flex justify-end space-x-4 mt-auto">
+                        <a href="https://github.com/PradipChotara/SignL" target="_blank" class="icon-link github-icon"
+                            title="GitHub"><i data-lucide="github"></i></a>
+                        <a href="https://storage.googleapis.com/signl_frontend/new_index.html" target="_blank"
+                            class="icon-link project-icon" title="Live Demo"><i
+                                data-lucide="arrow-up-right-from-square"></i></a>
                     </div>
                 </div>
 
@@ -450,16 +515,19 @@
         </section>
 
         <section id="contact" class="py-20 text-center">
-             <div class="text-center mb-4">
+            <div class="text-center mb-4">
                 <h2 class="text-4xl md:text-5xl">Get In Touch</h2>
-             </div>
-            <p class="text-xl mb-8 max-w-2xl mx-auto">I'm always open to discussing new projects, creative ideas, or opportunities. Feel free to reach out to me.</p>
+            </div>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">I'm always open to discussing new projects, creative ideas, or
+                opportunities. Feel free to reach out to me.</p>
             <a href="mailto:pradipchotara1999@gmail.com" class="retro-button">
                 Say Hello
             </a>
             <div class="flex justify-center space-x-6 mt-12">
-                <a href="https://github.com/pradipchotara" target="_blank" class="icon-link github-icon" title="GitHub"><i data-lucide="github" class="w-8 h-8"></i></a>
-                <a href="https://linkedin.com/in/pradip-chotara" target="_blank" class="icon-link"><i data-lucide="linkedin" class="w-8 h-8"></i></a>
+                <a href="https://github.com/pradipchotara" target="_blank" class="icon-link github-icon"
+                    title="GitHub"><i data-lucide="github" class="w-8 h-8"></i></a>
+                <a href="https://linkedin.com/in/pradip-chotara" target="_blank" class="icon-link"><i
+                        data-lucide="linkedin" class="w-8 h-8"></i></a>
             </div>
         </section>
 
@@ -500,7 +568,7 @@
         });
 
         // --- Web Audio API Sound Script ---
-        
+
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
         function unlockAudio() {
@@ -516,18 +584,18 @@
         // --- Sound Functions ---
 
         function playSound(type, ...args) {
-             if (audioCtx.state === 'suspended') return;
-             const [freq, vol, dur] = args;
-             const osc = audioCtx.createOscillator();
-             const gain = audioCtx.createGain();
-             osc.connect(gain);
-             gain.connect(audioCtx.destination);
-             osc.type = type;
-             osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-             gain.gain.setValueAtTime(vol, audioCtx.currentTime);
-             gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
-             osc.start();
-             osc.stop(audioCtx.currentTime + dur);
+            if (audioCtx.state === 'suspended') return;
+            const [freq, vol, dur] = args;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
+            osc.start();
+            osc.stop(audioCtx.currentTime + dur);
         }
 
         function playLaserSound() {
@@ -544,7 +612,7 @@
             oscillator.start(audioCtx.currentTime);
             oscillator.stop(audioCtx.currentTime + 0.1);
         }
-        
+
         function playNavBeep() {
             playSound('sine', 880, 0.5, 0.05);
         }
@@ -569,7 +637,7 @@
             playSound('triangle', 1200, 0.3, 0.2);
             setTimeout(() => playSound('sine', 1500, 0.2, 0.1), 50);
         }
-        
+
         // --- Event Listeners ---
 
         let isBoundaryEffectPlaying = false;
@@ -579,7 +647,7 @@
 
             if ((atTop || atBottom) && !isBoundaryEffectPlaying) {
                 isBoundaryEffectPlaying = true;
-                
+
                 playSound('sawtooth', 80, 0.2, 0.3);
 
                 const allText = document.querySelectorAll('p, li, h1, h2, h3, h4, h5, h6, a, span');
@@ -592,10 +660,10 @@
 
                 setTimeout(() => {
                     isBoundaryEffectPlaying = false;
-                }, 400); 
+                }, 400);
             }
         });
-        
+
         document.querySelectorAll('.skill-tag').forEach(tag => tag.addEventListener('mouseenter', playLaserSound));
         document.querySelectorAll('#header .nav-link').forEach(item => item.addEventListener('mouseenter', playNavBeep));
         document.querySelectorAll('.retro-button').forEach(button => button.addEventListener('mouseenter', playPowerUpSound));
